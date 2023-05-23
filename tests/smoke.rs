@@ -5,18 +5,11 @@ use std::{
 
 use rexpect::{error::Error, session::spawn_command};
 
-#[cfg(debug_assertions)]
-const PROFILE: &str = "debug";
-
-#[cfg(not(debug_assertions))]
-const PROFILE: &str = "release";
-
 fn exe<I>(cwd: impl AsRef<Path>, args: I) -> Command
 where
     I: IntoIterator<Item = &'static str>,
 {
-    let base_dir = env!("CARGO_MANIFEST_DIR");
-    let bin = format!("{base_dir}/target/{PROFILE}/ci-tmp-test");
+    let bin = env!("CARGO_BIN_EXE_ci-tmp-test");
     println!("{bin}");
 
     let mut cmd = Command::new(bin);
