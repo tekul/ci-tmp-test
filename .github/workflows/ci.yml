@@ -91,4 +91,4 @@ jobs:
       - name: Run tests
         env:
           RUST_BACKTRACE: 1
-        run: cargo test --workspace --target ${{ matrix.target }}
+        run: cargo test --workspace --target ${{ matrix.target }} -- --nocapture
